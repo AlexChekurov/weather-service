@@ -11,7 +11,7 @@ spring:
             readTimeout: 5000
             loggerLevel: full
             defaultRequestHeaders:
-              X-RapidAPI-Key: ${RAPID_API_KEY:1b2fb77da9mshe628cd401e2aeeap1a4765jsn5f0441de4c3b}
+              X-RapidAPI-Key: ${RAPID_API_KEY:107551d3d5msh655c4b9c8fbc253p1a043fjsn27861f817251}
               X-RapidAPI-Host: 'weatherapi-com.p.rapidapi.com'
   datasource:
     url: jdbc:postgresql://${DATABASE_HOST:localhost}:${DATABASE_PORT:5432}/${spring.datasource.username}
