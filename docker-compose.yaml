@@ -1,0 +1,27 @@
+services:
+  postgres:
+    image: postgres:15.3-alpine3.18
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: test_user
+      POSTGRES_PASSWORD: test_pass
+    volumes:
+      - ./create-db.sql:/docker-entrypoint-initdb.d/create_database.sql
+    restart: unless-stopped
+  weather-application:
+    image: weather-service:0.1.0
+    depends_on:
+      - postgres
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+    environment:
+      - DATABASE_HOST=postgres
+      - DATABASE_PORT=5432
+      - DATABASE_USER=test_user
+      - DATABASE_PASSWORD=test_pass
+      - WEATHER_API_URL=https://weatherapi-com.p.rapidapi.com/current.json
+      - RAPID_API_KEY=107551d3d5msh655c4b9c8fbc253p1a043fjsn27861f817251
+      - LOCATION=Minsk
+      - CRON_STRING=0 * * * * *
